@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <title>Web Programlama - JS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app">
+        <label for="txtGirdi">Notunuzu Ekleyin</label>
+        <textarea type="text" id="txtGirdi" cols="6" v-model="girilenDeger">Eklemek İstediğiniz Değer</textarea>
+
+        <button class="btn btn-success mt-1 col-12" @click="listeyeEkle">Ekle</button>
+        <ul>
+            <li v-for="not in notlar" v-bind:key="not">{{ not }}
+                <button type="button" class="btn btn-danger" @click="removeElement">Kaldır</button>
+            </li>
+        </ul>
+        
+    </div>
+
+
+     
+
+
+    <script>
+        new Vue({
+            el: "#app",
+
+            data: {
+                girilenDeger: '',
+                notlar: ['Örnek 1', 'Örnek 2']
+            },
+            methods: {
+                listeyeEkle() {
+                    if (this.girilenDeger !== ""){
+                    this.notlar.push(this.girilenDeger);
+                }
+                    this.girilenDeger = '';
+                },
+                removeElement: function (index) {
+                this.notlar.splice(index, 1);
+               }
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
